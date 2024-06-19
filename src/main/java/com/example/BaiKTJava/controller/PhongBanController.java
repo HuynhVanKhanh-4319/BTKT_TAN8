@@ -32,14 +32,12 @@ public class PhongBanController {
         phongBanService.addPhongBan(phongBan);
         return "redirect:/phongban";
     }
-    // Hiển thị danh sách danh mục
     @GetMapping("/phongban")
     public String listphongban(Model model) {
         List<PhongBan> phongBans = phongBanService.getAllPhongBan();
         model.addAttribute("phongban",phongBans);
         return "/phongban/phongban-list";
     }
-
     @GetMapping("/phongban/edit/{id}")
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         PhongBan phongBan = phongBanService.getPhongBanById(id)
@@ -48,7 +46,6 @@ public class PhongBanController {
         model.addAttribute("phongban", phongBan);
         return "/phongban/update-phongban";
     }
-    // POST request to update category
     @PostMapping("/phongban/update/{id}")
     public String updatephongban(@PathVariable("id") Long id, @Valid PhongBan phongBan,
                                  BindingResult result, Model model) {
@@ -60,7 +57,6 @@ public class PhongBanController {
         model.addAttribute("phongban", phongBanService.getAllPhongBan());
         return "redirect:/phongban";
     }
-    // GET request for deleting category
     @GetMapping("/phongban/delete/{id}")
     public String deletephongban(@PathVariable("id") Long id, Model model) {
         PhongBan phongBan = phongBanService.getPhongBanById(id)

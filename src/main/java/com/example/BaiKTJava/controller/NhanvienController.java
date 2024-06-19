@@ -30,11 +30,10 @@ public class NhanvienController {
     private PhongBanService phongBanService;
 
     @GetMapping
-    public String showProductList(Pageable pageable, Model model) {
+    public String nhanvienList(Pageable pageable, Model model) {
         model.addAttribute("nhanvien", nhanVienService.getAllNhanvien());
         return "/nhanvien/nhanvien-list";
     }
-    // For adding a new product
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("nhanvien", new NhanVien());
@@ -50,18 +49,16 @@ public class NhanvienController {
         return "redirect:/nhanvien";
     }
 
-
     @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable Long id, Model model) {
+    public String Edit(@PathVariable Long id, Model model) {
         NhanVien nhanVien = nhanVienService.getNhanVienById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid nhanvien Id:" + id));
         model.addAttribute("nhanvien", nhanVien);
         model.addAttribute("phongban", phongBanService.getAllPhongBan());
         return "/nhanvien/update-nhanvien";
     }
-    // Process the form for updating a product
     @PostMapping("/update/{id}")
-    public String updateProduct(@PathVariable Long id, @Valid NhanVien nhanVien, BindingResult result) {
+    public String updatenhanvien(@PathVariable Long id, @Valid NhanVien nhanVien, BindingResult result) {
         if (result.hasErrors()) {
             nhanVien.setId(id); //
             return "/nhanvien/update-nhanvien";
@@ -70,9 +67,8 @@ public class NhanvienController {
         nhanVienService.updateNhanVien(nhanVien);
         return "redirect:/nhanvien";
     }
-    // Handle request to delete a product
     @GetMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable Long id) {
+    public String deletenhanvien(@PathVariable Long id) {
 
         nhanVienService.deleteNhanVienById(id);
         return "redirect:/nhanvien";

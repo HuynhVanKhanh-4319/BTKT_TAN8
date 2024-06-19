@@ -26,7 +26,6 @@ public class UserService implements UserDetailsService {
     private IUserRepository userRepository;
     @Autowired
     private IRoleRepository roleRepository;
-
     public void save(@NotNull User user) {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);
@@ -40,7 +39,6 @@ public class UserService implements UserDetailsService {
                 () -> { throw new UsernameNotFoundException("User not found"); }
         );
     }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws
             UsernameNotFoundException {
@@ -56,7 +54,6 @@ public class UserService implements UserDetailsService {
                 .disabled(!user.isEnabled())
                 .build();
     }
-
     public Optional<User> findByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username);
     }

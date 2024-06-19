@@ -16,6 +16,8 @@ public class PhongBan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String MaPhong;
+    @Column
     private String TenPhong;
 }

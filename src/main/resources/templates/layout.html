@@ -40,7 +40,7 @@
         <li class="nav-item d-flex align-items-center"
             sec:authorize="isAuthenticated()">
 <span class="navbar-text text-white">
-Xin chào, <span sec:authentication="name" style="marginright: 20px;"></span>
+Hello , <span sec:authentication="name" style="marginright: 20px;color:red"></span>
 </span>
         </li>
         <li class="nav-item" sec:authorize="isAuthenticated()">
@@ -58,7 +58,6 @@ Xin chào, <span sec:authentication="name" style="marginright: 20px;"></span>
 </nav>
 <div class="container mt-5">
   <section layout:fragment="content">
-    <!-- Nội dung cụ thể của từng trang sẽ được đặt tại đây -->
   </section>
 </div>
 <script
