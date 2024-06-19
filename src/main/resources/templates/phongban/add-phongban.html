@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
       layout:decorate="~{layout}">
 <head>
     <title>Them Phogn Ban</title>
@@ -23,7 +23,9 @@
             <div class="text-danger" th:if="${#fields.hasErrors('tenPhong')}"
                  th:errors="*{tenPhong}"></div>
         </div>
+        <div sec:authorize="hasAuthority('ADMIN')">
         <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>
 </section>
 <script

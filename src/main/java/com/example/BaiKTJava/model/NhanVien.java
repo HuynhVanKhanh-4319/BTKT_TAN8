@@ -21,13 +21,16 @@ public class NhanVien {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String MaNv;
+    @Column
     private String TenNv;
+    @Column
     private String Phai;
+    @Column
     private double Luong;
+    @Column
     private String NoiSinh;
-
-
     @ManyToOne
     @JoinColumn(name = "Ma_Phong")
     private PhongBan phongBan;

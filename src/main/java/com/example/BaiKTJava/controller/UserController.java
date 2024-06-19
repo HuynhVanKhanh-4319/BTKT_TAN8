@@ -26,24 +26,20 @@ public class UserController {
     @GetMapping("/register")
     public String register(@NotNull Model model) {
         model.addAttribute("user", new User());
-
         return "users/register";
     }
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("user") User user,
-                           @NotNull BindingResult bindingResult,
-                           Model model) {
-        if (bindingResult.hasErrors()) { // Kiểm tra nếu có lỗi validate
-
+    public String register(@Valid @ModelAttribute("user") User user, @NotNull BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             var errors = bindingResult.getAllErrors()
                     .stream()
                     .map(DefaultMessageSourceResolvable::getDefaultMessage)
                     .toArray(String[]::new);
             model.addAttribute("errors", errors);
-            return "users/register"; // Trả về lại view "register" nếu có lỗi
+            return "users/register";
         }
-        userService.save(user); // Lưu người dùng vào cơ sở dữ liệu
-        userService.setDefaultRole(user.getUsername()); // Gán vai trò mặc định chongười dùng
-        return "redirect:/login"; // Chuyển hướng người dùng tới trang "login"
+        userService.save(user);
+        userService.setDefaultRole(user.getUsername());
+        return "redirect:/login";
     }
 }

@@ -60,11 +60,9 @@ public class SecurityConfig {
                         .failureUrl("/login?error")
                         .permitAll()
                 ) .
-//
         exceptionHandling(exceptionHandling -> exceptionHandling
         .accessDeniedPage("/403")
 ) .
-//
         httpBasic(httpBasic -> httpBasic
         .realmName("hutech")
 ) .
